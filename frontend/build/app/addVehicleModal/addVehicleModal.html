@@ -1,0 +1,66 @@
+<!--addVehicleModel.html-->
+<!--Used to add a vehicle to the database-->
+<div class="modal fade" id="addVehicleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">Add Vehicle</h4>
+        </div>
+        <div class="modal-body">
+            <!-- Form begin -->
+            <form class="form-horizontal" name="addVehicleModalForm" #addVehicleModalForm="ngForm" (ngSubmit)="onSubmit(addVehicleModalForm.value)" novalidate>
+                <!-- Vehicle Make -->
+                <div class="form-group">
+                    <label for="Make" class="col-form-label">Vehicle Make</label>
+                    <div>
+                        <input type="text" class="form-control" name="make" [(ngModel)]="vehicle.make" id="make" placeholder="Vehicle Make" required>
+                    </div>
+                </div>
+                <!-- Vehicle Model -->
+                <div class="form-group">
+                    <label for="Model" class="col-form-label">Vehicle Model</label>
+                    <div>
+                        <input type="text" class="form-control" name="model" [(ngModel)]="vehicle.model" id="model" placeholder="Vehicle Model" required>
+                    </div>
+                </div>
+                <!-- Vehicle Year -->
+                <div class="form-group">
+                    <label for="Year" class="col-form-label">Vehicle Year</label>
+                    <div>
+                        <input type="number" class="form-control" name="year" [(ngModel)]="vehicle.year" id="year" placeholder="Vehicle Year" required>
+                    </div>
+                </div>
+                <!-- Vehicle Color -->
+                <div class="form-group">
+                    <label for="Color" class="col-form-label">Vehicle Color</label>
+                    <div>
+                        <input type="text" class="form-control" name="color" [(ngModel)]="vehicle.color" id="color" placeholder="Vehicle Color" required>
+                    </div>
+                </div>
+                <!-- Vehicle Primary Driver -->
+                <div class="form-group">
+                    <label for="Pdriver" class="col-form-label">Primary Driver</label>
+                    <div>
+                        <input type="text" class="form-control" name="pdriver" [(ngModel)]="vehicle.pdriver" id="pdriver" placeholder="Primary Driver" required>
+                    </div>
+                </div>
+                <!-- Vehicle Nickname -->
+                <div class="form-group">
+                    <label for="Nickname" class="col-form-label">Vehicle Nickname</label>
+                    <div>
+                        <input type="text" class="form-control" name="nickname" [(ngModel)]="vehicle.nickname" id="nickname" placeholder="Vehicle Nickname" required>
+                    </div>
+                </div>
+                <!--Buttons-->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

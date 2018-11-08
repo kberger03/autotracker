@@ -1,0 +1,136 @@
+<!--maintAct.html-->
+<!--maintAct page for manipulating data-->
+<navbar2-cmp></navbar2-cmp>
+
+<div class="container">
+    <h1 align="center">Maintenance Activities</h1>
+</div>
+<div class="main">
+<div class="container">
+<div class="row">
+  <div class="col-sm-2" align="center"></div>
+  <div class="col-sm-8" align="center">
+    <br>
+    <!-- Add Activity Button -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addActiveModal">
+      Add Maintenance Activity
+    </button>
+    <br><br>
+    <!--table begin-->
+    <table class="table table-bordered table-hover table-responsive">
+        <tbody>
+        <!--For loop to display all activities-->
+            <tr *ngFor="let active of actives">
+                <td>
+                    {{active.mtype | uppercase}}
+                </td>
+                <td>
+                    {{active.date | date}}
+                </td>
+                <td>
+                    {{active.mechanic | uppercase}}
+                </td>
+                <td class="text-center">
+                    <br>
+                    <!--edit activity button-->
+                    <button (click)="openEditActiveModal(active)" type="button" class="btn btn-warning">
+                        Edit Activity
+                    </button>
+                </td>
+                <td class="text-center">
+                    <br>
+                    <!--delete activity button-->
+                    <button (click)="openDeleteActiveModal(active)" type="button" class="btn btn-danger">
+                        Delete Activity
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--table end-->
+  </div>
+  <div class="col-sm-2" align="center"></div>
+</div>
+</div>
+</div>
+
+<!--import-->
+<addActiveModal-cmp></addActiveModal-cmp>
+
+
+
+<!--Edit Active Modal-->
+<div class="modal fade" id="editActiveModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">Edit Activity</h4>
+        </div>
+        <div class="modal-body">
+          <!--Form begin-->
+          <form class="form-horizontal" name="editActiveModalForm" #editActiveModalForm="ngForm" (ngSubmit)="onEditSubmit(editActiveModalForm.value)" novalidate>
+              <!--ID field, stays hidden to the admin-->
+              <div [hidden]="true" class="form-group">
+                  <label for="id" class="col-lg-2 control-label">id</label>
+                  <div class="col-lg-10">
+                      <input type="text" class="form-control" name="id" [(ngModel)]="selectedActive.id" id="id" placeholder="id" required autofocus>
+                  </div>
+              </div>
+                <!-- Activity Type -->
+                <div class="form-group">
+                    <label for="Mtype" class="col-form-label">Activity Type</label>
+                    <div>
+                        <input type="text" class="form-control" name="mtype" [(ngModel)]="selectedActive.mtype" id="mtype" placeholder="Activity Type" required>
+                    </div>
+                </div>
+                <!-- Activity Date -->
+                <div class="form-group">
+                    <label for="Date" class="col-form-label">Activity Date</label>
+                    <div>
+                        <input type="text" class="form-control" name="date" [(ngModel)]="selectedActive.date" id="date" placeholder="mm/dd/yy" required>
+                    </div>
+                </div>
+                <!-- Mechanic -->
+                <div class="form-group">
+                    <label for="Mechanic" class="col-form-label">Service Mechanic</label>
+                    <div>
+                        <input type="text" class="form-control" name="mechanic" [(ngModel)]="selectedActive.mechanic" id="mechanic" placeholder="Service Mechanic" required>
+                    </div>
+                </div>
+              <div class="modal-footer">
+                <!--submission buttons-->
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button (click)="closeEditActiveModal()" type="button" class="btn btn-secondary">Close</button>
+              </div>
+          </form>
+          <!--form end-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--Delete Active Modal-->
+<div class="modal fade" id="deleteActiveModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">Delete Activity</h4>
+        </div>
+        <div class="modal-body">
+          <h4>Are you sure you want to delete this activity?</h4>
+        </div>
+        <div class="modal-footer">
+          <button (click)="deleteActive(deletedActive.id)" type="button" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

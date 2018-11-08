@@ -1,0 +1,63 @@
+<div class="modal fade" id="editGameModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">Edit Game</h4>
+      </div>
+      <div class="modal-body">
+        <!--Form-->
+        <form class="form-horizontal" name="editGameModalForm" #editGameModalForm="ngForm" (ngSubmit)="onSubmit(editGameModalForm.value)" novalidate>
+            <!--ID-->
+            <div [hidden]="true" class="form-group">
+                <label for="id" class="col-lg-2 control-label">id</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="id" [(ngModel)]="game.id" id="id" placeholder="id" required autofocus>
+                </div>
+            </div>
+            <!--Date-->
+            <div class="form-group">
+                <label for="date" class="col-lg-2 control-label">Date</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="date" [(ngModel)]="game.date" id="date" placeholder="date" required autofocus>
+                </div>
+            </div>
+            <!--Opponent-->
+            <div class="form-group">
+                <label for="opponent" class="col-lg-2 control-label">Opponent</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="opponent" [(ngModel)]="game.opponent" id="opponent" placeholder="opponent" required>
+                </div>
+            </div>
+            <!--Location-->
+            <div class="form-group">
+                <label for="location" class="col-lg-2 control-label">Spurs Home/Away</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="location" [(ngModel)]="game.location" id="location" placeholder="location" required>
+                </div>
+            </div>
+            <!--SpursScore-->
+            <div class="form-group">
+                <label for="spursscore" class="col-lg-2 control-label">Spurs Score</label>
+                <div class="col-lg-10">
+                    <input type="number" class="form-control" name="spursscore" [(ngModel)]="game.spursscore" id="spursscore" placeholder="spursscore" required>
+                </div>
+            </div>
+            <!--OppScore-->
+            <div class="form-group">
+                <label for="oppscore" class="col-lg-2 control-label">Opponent Score</label>
+                <div class="col-lg-10">
+                    <input type="number" class="form-control" name="oppscore" [(ngModel)]="game.oppscore" id="oppscore" placeholder="oppscore" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button (click)="closeEditGameModal()" type="button" class="btn btn-secondary">Close</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

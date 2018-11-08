@@ -1,0 +1,160 @@
+<!--profile.html-->
+<!--profile page for manipulating data-->
+<navbar2-cmp></navbar2-cmp>
+
+<div class="container">
+    <h1 align="center">Profile</h1>
+</div>
+<div class="main">
+<div class="container">
+<div class="row">
+  <div class="col-sm-2" align="center"></div>
+  <div class="col-sm-8" align="center">
+    <br>
+    <!-- Add Vehicle Button -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addVehicleModal">
+      Add Vehicle
+    </button>
+    <br><br>
+    <!--table begin-->
+    <table class="table table-bordered table-hover table-responsive">
+        <tbody>
+        <!--For loop to display all vehicles-->
+            <tr *ngFor="let vehicle of vehicles">
+                <td>
+                    {{vehicle.nickname | uppercase}}<br>
+                    ___________________<br>
+                    {{vehicle.year}} {{vehicle.make | uppercase}} {{vehicle.model | uppercase}}<br>
+                </td>
+                <td>
+                    <br><br>
+                    Primary Driver: {{vehicle.pdriver | uppercase}}
+                </td>
+                <td class="text-center">
+                    <br>
+                    <!--edit vehicle button-->
+                    <button (click)="openEditVehicleModal(vehicle)" type="button" class="btn btn-warning">
+                        Edit Vehicle
+                    </button>
+                </td>
+                <td class="text-center">
+                    <br>
+                    <!--delete vehicle button-->
+                    <button (click)="openDeleteVehicleModal(vehicle)" type="button" class="btn btn-danger">
+                        Delete Vehicle
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--table end-->
+  </div>
+  <div class="col-sm-2" align="center"></div>
+</div>
+</div>
+</div>
+
+<!--import-->
+<addVehicleModal-cmp></addVehicleModal-cmp>
+
+
+
+<!--Edit Vehicle Modal-->
+<div class="modal fade" id="editVehicleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Edit Vehicle</h4>
+            </div>
+            <div class="modal-body">
+              <!--Form begin-->
+              <form class="form-horizontal" name="editVehicleModalForm" #editVehicleModalForm="ngForm" (ngSubmit)="onEditSubmit(editVehicleModalForm.value)" novalidate>
+                  <!--ID field, stays hidden to the admin-->
+                  <div [hidden]="true" class="form-group">
+                      <label for="id" class="col-lg-2 control-label">id</label>
+                      <div class="col-lg-10">
+                          <input type="text" class="form-control" name="id" [(ngModel)]="selectedVehicle.id" id="id" placeholder="id" required autofocus>
+                      </div>
+                  </div>
+
+                <!-- Vehicle Make -->
+                <div class="form-group">
+                        <label for="Make" class="col-form-label">Vehicle Make</label>
+                        <div>
+                            <input type="text" class="form-control" name="make" [(ngModel)]="selectedVehicle.make" id="make" placeholder="Vehicle Make" required>
+                        </div>
+                    </div>
+                    <!-- Vehicle Model -->
+                    <div class="form-group">
+                        <label for="Model" class="col-form-label">Vehicle Model</label>
+                        <div>
+                            <input type="text" class="form-control" name="model" [(ngModel)]="selectedVehicle.model" id="model" placeholder="Vehicle Model" required>
+                        </div>
+                    </div>
+                    <!-- Vehicle Year -->
+                    <div class="form-group">
+                        <label for="Year" class="col-form-label">Vehicle Year</label>
+                        <div>
+                            <input type="number" class="form-control" name="year" [(ngModel)]="selectedVehicle.year" id="year" placeholder="Vehicle Year" required>
+                        </div>
+                    </div>
+                    <!-- Vehicle Color -->
+                    <div class="form-group">
+                        <label for="Color" class="col-form-label">Vehicle Color</label>
+                        <div>
+                            <input type="text" class="form-control" name="color" [(ngModel)]="selectedVehicle.color" id="color" placeholder="Vehicle Color" required>
+                        </div>
+                    </div>
+                    <!-- Vehicle Primary Driver -->
+                    <div class="form-group">
+                        <label for="Pdriver" class="col-form-label">Primary Driver</label>
+                        <div>
+                            <input type="text" class="form-control" name="pdriver" [(ngModel)]="selectedVehicle.pdriver" id="pdriver" placeholder="Primary Driver" required>
+                        </div>
+                    </div>
+                    <!-- Vehicle Nickname -->
+                    <div class="form-group">
+                        <label for="Nickname" class="col-form-label">Vehicle Nickname</label>
+                        <div>
+                            <input type="text" class="form-control" name="nickname" [(ngModel)]="selectedVehicle.nickname" id="nickname" placeholder="Vehicle Nickname" required>
+                        </div>
+                    </div>
+
+
+                  <div class="modal-footer">
+                    <!--submission buttons-->
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                      <button (click)="closeEditVehicleModal()" type="button" class="btn btn-secondary">Close</button>
+                  </div>
+              </form>
+              <!--form end-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<!--Delete Vehicle Modal-->
+<div class="modal fade" id="deleteVehicleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Delete Vehicle</h4>
+            </div>
+            <div class="modal-body">
+              <h4>Are you sure you want to delete this vehicle?</h4>
+            </div>
+            <div class="modal-footer">
+              <button (click)="deleteVehicle(deletedVehicle.id)" type="button" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>

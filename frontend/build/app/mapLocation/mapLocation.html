@@ -1,0 +1,25 @@
+<!--mapLocaiton.html-->
+<!--map for directions to home games-->
+<navbar-cmp></navbar-cmp>
+
+<div class="jumbotron">
+<div class="container">
+<div class="row">
+  <div class="col-sm-3" align="center"></div>
+  <div class="col-sm-6" align="center">
+    <h2>AT&T Center Map </h2>
+    <!--Google maps acquisition-->
+      <sebm-google-map [zoom]=12 [latitude]="lat" [longitude]="lng">
+      <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+      </sebm-google-map>
+      <br>
+      <div class="well">
+        <h2>Parking</h2>
+        <h4>There are 7 parking lots surrounding the AT&T Center. </h4>
+        <h4>Parking prices range from $15 to $20.</h4>
+      </div>
+  </div>
+  <div class="col-sm-3" align="center"></div>
+</div>
+</div>
+</div>

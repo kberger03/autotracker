@@ -1,0 +1,33 @@
+<!--navbar2.html-->
+<!--The navbar for the admin-->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/menu"><img src="frontend/assets/img/road5.jpg" width="30" class="img-responsive" alt="logo.png"></a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="padding-right">
+          <button type="button" class="btn btn-default navbar-btn" routerLink="/profile"> Profile </button>
+        </li>
+        <li class="padding-right">
+          <button type="button" class="btn btn-default navbar-btn" routerLink="/maintact"> Maintenance Activities </button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="padding-left">
+            <button type="button" (click)="onLogout()" class="btn btn-danger navbar-btn" routerLink="/"> Logout </button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<signup-cmp></signup-cmp>

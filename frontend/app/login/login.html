@@ -1,0 +1,47 @@
+<!--login.html-->
+<!--Page for the admin to login-->
+<navbar3-cmp></navbar3-cmp>
+
+<div class="jumbotron">
+<div class="container">
+<div class="row">
+  <div class="col-sm-3" align="center"></div>
+  <div class="col-sm-6" align="center">
+    <div class="well">
+    <!--Form Begin-->
+        <form class="form-horizontal" name="loginForm" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate>
+            <legend>Login</legend>
+            <!--Username Field-->
+            <div class="form-group">
+                <label for="login" class="col-lg-2 control-label"><i class="glyphicon glyphicon-user"></i></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="login" [(ngModel)]="user.login" id="login" placeholder="Username" required autofocus>
+                </div>
+            </div>
+            <!--Password Field-->
+            <div class="form-group">
+                <label for="password" class="col-lg-2 control-label"><i class="glyphicon glyphicon-lock"></i></label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" name="password" [(ngModel)]="user.password" id="password" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <!--Button Selections-->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-default" routerLink="/">Cancel</button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#signup">
+                Signup
+            </button>
+        </form>
+        <!--Form End-->
+      </div>
+  </div>
+  <div class="col-sm-3" align="center"></div>
+</div>
+</div>
+</div>
+
+<signup-cmp></signup-cmp>

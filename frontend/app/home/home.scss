@@ -1,0 +1,27 @@
+// home.scss
+// Formatting for the user page
+home-cmp {
+    h1 {
+        text-align: center;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+    }
+
+    .jumbotron {
+        background: url('../assets/img/road5.jpg') no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .main {
+        background: url('../assets/img/lightbackground.png');
+        background-size: 100% 100%;
+    }
+    
+}

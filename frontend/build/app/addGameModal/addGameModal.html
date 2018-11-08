@@ -1,0 +1,95 @@
+<!--addGameModel.html-->
+<!--Used to add a game to the database-->
+<div class="modal fade" id="addGameModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">Add Game</h4>
+      </div>
+      <div class="modal-body">
+        <!--Form begin-->
+        <form class="form-horizontal" name="addGameModalForm" #addGameModalForm="ngForm" (ngSubmit)="onSubmit(addGameModalForm.value)" novalidate>
+            <!--Date field-->
+            <div class="form-group">
+                <label for="Date" class="col-lg-2 control-label">Date</label>
+                <div class="col-lg-10">
+                    <input type="date" class="form-control" name="date" [(ngModel)]="game.date" id="date" placeholder="mm/dd/yy" required autofocus>
+                </div>
+            </div>
+            <!--Opponent field-->
+            <div class="form-group">
+                <label for="Opponent" class="col-lg-2 control-label">Opponent</label>
+                <div class="col-lg-10">
+                    <!--dropdown selection-->
+                    <select type="text" class="form-control" name="opponent" [(ngModel)]="game.opponent" id="opponent" placeholder="opponent" required>
+                        <option value="Atlanta Hawks">Atlanta Hawks</option>
+                        <option value="Boston Celtics">Boston Celtics</option>
+                        <option value="Brooklyn Nets">Brooklyn Nets</option>
+                        <option value="Charlotte Hornets">Charlotte Hornets</option>
+                        <option value="Chicago Bulls">Chicago Bulls</option>
+                        <option value="Cleveland Cavaliers">Cleveland Cavaliers</option>
+                        <option value="Dallas Mavericks">Dallas Mavericks</option>
+                        <option value="Denver Nuggets">Denver Nuggets</option>
+                        <option value="Detroit Pistons">Detroit Pistons</option>
+                        <option value="Golden State Warriors">Golden State Warriors</option>
+                        <option value="Houston Rockets">Houston Rockets</option>
+                        <option value="Indiana Pacers">Indiana Pacers</option>
+                        <option value="LA Clippers">LA Clippers</option>
+                        <option value="Los Angeles Lakers">Los Angeles Lakers</option>
+                        <option value="Memphis Grizzlies">Memphis Grizzlies</option>
+                        <option value="Miami Heat">Miami Heat</option>
+                        <option value="Milwaukee Bucks">Milwaukee Bucks</option>
+                        <option value="Minnesota Timberwolves">Minnesota Timberwolves</option>
+                        <option value="New Orleans Pelicans">New Orleans Pelicans</option>
+                        <option value="New York Knicks">New York Knicks</option>
+                        <option value="Oklahoma City Thunder">Oklahoma City Thunder</option>
+                        <option value="Orlando Magic">Orlando Magic</option>
+                        <option value="Philadelphia 76ers">Philadelphia 76ers</option>
+                        <option value="Phoenix Suns">Phoenix Suns</option>
+                        <option value="Portland Trail Blazers">Portland Trail Blazers</option>
+                        <option value="Sacramento Kings">Sacramento Kings</option>
+                        <option value="Toronto Raptors">Toronto Raptors</option>
+                        <option value="Utah Jazz">Utah Jazz</option>
+                        <option value="Washington Wizards">Washington Wizards</option>
+                    </select>
+                </div>
+            </div>
+            <!--Location field-->
+            <div class="form-group">
+                <label for="Location" class="col-lg-2 control-label">Spurs Home/Away</label>
+                <div class="col-lg-10">
+                    <!--dropdown selection-->
+                    <select type="text" class="form-control" name="location" [(ngModel)]="game.location" id="location" placeholder="location" required>
+                        <option value="Home">Home</option>
+                        <option value="Away">Away</option>
+                    </select>
+                </div>
+            </div>
+            <!--SpursScore field-->
+            <div class="form-group">
+                <label for="SpursScore" class="col-lg-2 control-label">Spurs Score</label>
+                <div class="col-lg-10">
+                    <input type="number" class="form-control" name="spursscore" [(ngModel)]="game.spursscore" id="spursscore" placeholder="spursscore" required>
+                </div>
+            </div>
+            <!--OppScore field-->
+            <div class="form-group">
+                <label for="OppScore" class="col-lg-2 control-label">Opponent Score</label>
+                <div class="col-lg-10">
+                    <input type="number" class="form-control" name="oppscore" [(ngModel)]="game.oppscore" id="oppscore" placeholder="oppscore" required>
+                </div>
+            </div>
+            <!--Buttons-->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+        <!--End Form-->
+      </div>
+    </div>
+  </div>
+</div>
