@@ -19,11 +19,12 @@ var addVehicleModalComponent = (function () {
     function addVehicleModalComponent(vehiclesService, router) {
         this.vehiclesService = vehiclesService;
         this.router = router;
-        this.vehicle = new addVehicleModal_form_1.addVehicleModalForm('', '', 0, '', '', '');
+        this.vehicle = new addVehicleModal_form_1.addVehicleModalForm(0, '', '', 0, '', '', '');
     }
     // Actions for form submission
     addVehicleModalComponent.prototype.onSubmit = function (value) {
         console.log(value); //for troubleshooting purposes
+        value.userId = localStorage.getItem("userId");
         this.vehiclesService.addVehicle(value).subscribe(function (data) {
             console.log(data); //for troubleshooting purposes
             $('#addVehicleModal').modal("hide"); //hides modal

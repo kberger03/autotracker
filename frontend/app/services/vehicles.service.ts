@@ -23,6 +23,11 @@ export class VehiclesService {
         return this.http.get(this.url + "/" + id).map(res => res.json());
     }
 
+//requests the vehicles for a single user in the database 
+    getUserVehicles(userId: any){
+        return this.http.get("api/v1/getveh/" + userId).map(res => res.json());
+    }
+
 //adds a vehicle to the database
     addVehicle(value: any){ 
         console.log(value + "in services");

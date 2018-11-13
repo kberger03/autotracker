@@ -27,6 +27,10 @@ var VehiclesService = (function () {
     VehiclesService.prototype.getVehicle = function (id) {
         return this.http.get(this.url + "/" + id).map(function (res) { return res.json(); });
     };
+    //requests the vehicles for a single user in the database 
+    VehiclesService.prototype.getUserVehicles = function (userId) {
+        return this.http.get("api/v1/getveh/" + userId).map(function (res) { return res.json(); });
+    };
     //adds a vehicle to the database
     VehiclesService.prototype.addVehicle = function (value) {
         console.log(value + "in services");

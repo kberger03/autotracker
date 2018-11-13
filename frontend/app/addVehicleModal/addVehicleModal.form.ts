@@ -1,6 +1,7 @@
 // addVehicleModal.form.ts
 export class addVehicleModalForm {
     constructor(
+        public userId: number,
         public make: string,
         public model: string,
         public year: number,

@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // addVehicleModal.form.ts
 var addVehicleModalForm = (function () {
-    function addVehicleModalForm(make, model, year, color, pdriver, nickname) {
+    function addVehicleModalForm(userId, make, model, year, color, pdriver, nickname) {
+        this.userId = userId;
         this.make = make;
         this.model = model;
         this.year = year;

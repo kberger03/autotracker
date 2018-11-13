@@ -50,6 +50,7 @@ class Vehicle(db.Model):
 
     # Fields in this model
     id          = db.Column(db.Integer, primary_key=True)
+    userId      = db.Column(db.Integer, db.ForeignKey('users.id'))
     make        = db.Column(db.String, nullable=False)
     model       = db.Column(db.String, nullable=False)
     year        = db.Column(db.Integer, nullable=False)

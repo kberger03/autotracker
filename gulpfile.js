@@ -11,6 +11,9 @@ var browserSync = require('browser-sync').create();
 // Run the server
 gulp.task('runserver', function() {
   var proc = execute('python3 server.py');
+  proc.on('ssh2Data', function (data) {
+    process.stdout.write(data.toString());
+  });
   // For non-linux, uncomment the line below
   // var proc = execute('python server.py');
 });

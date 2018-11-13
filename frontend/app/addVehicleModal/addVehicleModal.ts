@@ -17,11 +17,12 @@ export class addVehicleModalComponent {
     constructor(private vehiclesService: VehiclesService, private router: Router){
     }
 
-    vehicle = new addVehicleModalForm('', '', 0, '', '', '');
+    vehicle = new addVehicleModalForm(0, '', '', 0, '', '', '');
 
     // Actions for form submission
     onSubmit(value: any){
         console.log(value); //for troubleshooting purposes
+        value.userId = localStorage.getItem("userId");
         this.vehiclesService.addVehicle(value).subscribe(data => {
         console.log(data); //for troubleshooting purposes
         $('#addVehicleModal').modal("hide"); //hides modal

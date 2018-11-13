@@ -21,7 +21,7 @@ export class ProfileComponent {
 
 // on load of page
 ngOnInit() {
-  this.vehiclesService.getVehicles().subscribe(data => {
+  this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).subscribe(data => {
     this.vehicles = data.objects;
   });
 }

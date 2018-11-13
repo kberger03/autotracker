@@ -26,7 +26,7 @@ var ProfileComponent = (function () {
     // on load of page
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.vehiclesService.getVehicles().subscribe(function (data) {
+        this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).subscribe(function (data) {
             _this.vehicles = data.objects;
         });
     };
