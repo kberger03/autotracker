@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginForm } from './login.form';
 import { UsersService } from '../services/users.service';
 import { AuthService } from '../services/auth.service';
+import { VehiclesService } from '../services/vehicles.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,9 +15,13 @@ import { Router } from '@angular/router';
 
 export class LoginComponent { 
 
+  vehicles: any = [];
+  vehicle: any = '';
+
   constructor(
     private usersService: UsersService, 
     private authService: AuthService, 
+    private vehiclesService: VehiclesService,
     private router: Router ){
     this.usersService.getUsers().subscribe(users => {
       console.log(users);
@@ -36,8 +41,8 @@ export class LoginComponent {
           localStorage.setItem('userEmail', id.email);
           localStorage.setItem('userUsername', id.username);
           console.log(id);
+          this.router.navigateByUrl('profile'); //redirect to the profile page in success cases
         });
-        this.router.navigateByUrl('profile'); //redirect to the profile page in success case
       }
     });
   }

@@ -14,13 +14,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var addActiveModal_form_1 = require("./addActiveModal.form");
+var vehicles_service_1 = require("../services/vehicles.service");
 var actives_service_1 = require("../services/actives.service");
 var addActiveModalComponent = (function () {
-    function addActiveModalComponent(activesService, router) {
+    function addActiveModalComponent(activesService, vehiclesService, router) {
         this.activesService = activesService;
+        this.vehiclesService = vehiclesService;
         this.router = router;
-        this.active = new addActiveModal_form_1.addActiveModalForm('', '', '');
+        this.vehicles = [];
+        this.nicknames = [];
+        this.vehicle = '';
+        this.active = new addActiveModal_form_1.addActiveModalForm(0, '', '', '');
     }
+    addActiveModalComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(localStorage.getItem("userId"));
+        this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).subscribe(function (data) {
+            _this.vehicles = data.objects;
+            //   this.vehicles.forEach((item :any) => {
+            //     console.log("for this");
+            //     this.nicknames.push(item.nickname);
+            //   });
+            console.log("I am here");
+            console.log(_this.vehicles);
+        });
+    };
     // Actions for form submission
     addActiveModalComponent.prototype.onSubmit = function (value) {
         console.log(value); //for troubleshooting purposes
@@ -39,6 +57,6 @@ addActiveModalComponent = __decorate([
         selector: 'addActiveModal-cmp',
         templateUrl: 'addActiveModal.html'
     }),
-    __metadata("design:paramtypes", [actives_service_1.ActivesService, router_1.Router])
+    __metadata("design:paramtypes", [actives_service_1.ActivesService, vehicles_service_1.VehiclesService, router_1.Router])
 ], addActiveModalComponent);
 exports.addActiveModalComponent = addActiveModalComponent;

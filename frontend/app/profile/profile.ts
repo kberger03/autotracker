@@ -21,11 +21,17 @@ export class ProfileComponent {
 
 // on load of page
 ngOnInit() {
+  console.log(localStorage.getItem("userId"));
   this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).subscribe(data => {
     this.vehicles = data.objects;
   });
 }
 
+// localStorage.getItem("userId")
+
+// ngOnInit() {
+//   this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).then(event => this.ev = event);
+// }
 
 // opens edit vehicle modal
 openEditVehicleModal(vehicle: any){

@@ -12,6 +12,23 @@
         <div class="modal-body">
             <!-- Form begin -->
             <form class="form-horizontal" name="addActiveModalForm" #addActiveModalForm="ngForm" (ngSubmit)="onSubmit(addActiveModalForm.value)" novalidate>
+                <!--Vehicle field-->
+                <!-- <div class="form-group">
+                    <label for="vehicleid" class="col-lg-2 control-label">Vehicle</label> -->
+                    <div>
+                    <!--dropdown selection-->
+                    <!-- <select class="form-control" ng-options="vehicle.nickname for vehicle in vehicles">
+                        <option value="">Select</option>
+                    </select> -->
+                        <select type="text" class="form-control" name="vehicleId" [(ngModel)]="active.vehicleId" id="vehicleId" placeholder="Vehicle" required>
+                            <ul>
+                                <li *ngFor="let vehicle of vehicles">
+                                    <option>J chilling</option>
+                                </li>
+                            </ul>
+                        </select>
+                    </div>
+                <!-- </div> -->
                 <!-- Activity Type -->
                 <div class="form-group">
                     <label for="Mtype" class="col-form-label">Activity Type</label>

@@ -50,5 +50,8 @@ from backend.api.v1 import auth
 # Importing the REST API for users
 from backend.api.v1 import users
 
+# Importing the REST API for vehicles
+from backend.api.v1 import vehicles
+
 # Importing the app views
 from backend import views

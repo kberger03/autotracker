@@ -19,6 +19,7 @@ var login_1 = require("./login/login");
 var signup_1 = require("./signup/signup");
 var profile_1 = require("./profile/profile");
 var maintAct_1 = require("./maintAct/maintAct");
+var timeline_1 = require("./timeline/timeline");
 var addVehicleModal_1 = require("./addVehicleModal/addVehicleModal");
 var addActiveModal_1 = require("./addActiveModal/addActiveModal");
 var navbar_1 = require("./navbar/navbar");
@@ -33,7 +34,8 @@ var appRoutes = [
     { path: '', component: home_1.HomeComponent },
     { path: 'login', component: login_1.LoginComponent },
     { path: 'profile', component: profile_1.ProfileComponent },
-    { path: 'maintact', component: maintAct_1.MaintActComponent }
+    { path: 'maintact', component: maintAct_1.MaintActComponent },
+    { path: 'timeline', component: timeline_1.TimelineComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -59,6 +61,7 @@ AppModule = __decorate([
             signup_1.SignupComponent,
             profile_1.ProfileComponent,
             maintAct_1.MaintActComponent,
+            timeline_1.TimelineComponent,
             addVehicleModal_1.addVehicleModalComponent,
             addActiveModal_1.addActiveModalComponent,
             navbar_1.navbarComponent,

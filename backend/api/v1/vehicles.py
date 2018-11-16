@@ -2,7 +2,7 @@ from flask import request, make_response, jsonify
 
 from backend import app
 from backend.api.v1 import URL
-from backend.models import User, Vehicle
+from backend.models import Vehicle
 
 
 # @app.route(URL + '/<vehicle>', methods=['GET'])
@@ -16,14 +16,18 @@ from backend.models import User, Vehicle
 
 @app.route(URL + '/getveh/<userId>', methods=['GET'])
 def getUserVehicles(userId):
-        vehicle = User.query.filter_by(userId=vehicle.userId).first()
-        jsonVehicle = {}
-        jsonVehicle['id'] = vehicle.id
-        jsonVehicle['make'] = vehicle.make
-        jsonVehicle['model'] = vehicle.model
-        jsonVehicle['year'] = vehicle.year
-        jsonVehicle['color'] = vehicle.color
-        jsonVehicle['pdriver'] = vehicle.pdriver
-        jsonVehicle['nickname'] = vehicle.nickname
+        vehicles = Vehicle.query.filter_by(userId=userId).all()
+        response={}
+        response['objects']=[]
+        for vehicle in vehicles:
+                jsonVehicle = {}
+                jsonVehicle['id'] = vehicle.id
+                jsonVehicle['make'] = vehicle.make
+                jsonVehicle['model'] = vehicle.model
+                jsonVehicle['year'] = vehicle.year
+                jsonVehicle['color'] = vehicle.color
+                jsonVehicle['pdriver'] = vehicle.pdriver
+                jsonVehicle['nickname'] = vehicle.nickname
+                response['objects'].append(jsonVehicle)
 
-        return make_response(jsonify(jsonVehicle), 200)
+        return make_response(jsonify(response), 200)

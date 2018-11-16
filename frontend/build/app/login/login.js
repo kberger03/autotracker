@@ -15,12 +15,16 @@ var core_1 = require("@angular/core");
 var login_form_1 = require("./login.form");
 var users_service_1 = require("../services/users.service");
 var auth_service_1 = require("../services/auth.service");
+var vehicles_service_1 = require("../services/vehicles.service");
 var router_1 = require("@angular/router");
 var LoginComponent = (function () {
-    function LoginComponent(usersService, authService, router) {
+    function LoginComponent(usersService, authService, vehiclesService, router) {
         this.usersService = usersService;
         this.authService = authService;
+        this.vehiclesService = vehiclesService;
         this.router = router;
+        this.vehicles = [];
+        this.vehicle = '';
         this.user = new login_form_1.LoginForm('', '');
         this.usersService.getUsers().subscribe(function (users) {
             console.log(users);
@@ -38,8 +42,8 @@ var LoginComponent = (function () {
                     localStorage.setItem('userEmail', id.email);
                     localStorage.setItem('userUsername', id.username);
                     console.log(id);
+                    _this.router.navigateByUrl('profile'); //redirect to the profile page in success cases
                 });
-                _this.router.navigateByUrl('profile'); //redirect to the profile page in success case
             }
         });
     };
@@ -53,6 +57,7 @@ LoginComponent = __decorate([
     }),
     __metadata("design:paramtypes", [users_service_1.UsersService,
         auth_service_1.AuthService,
+        vehicles_service_1.VehiclesService,
         router_1.Router])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;

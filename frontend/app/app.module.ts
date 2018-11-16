@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login';
 import { SignupComponent } from './signup/signup';
 import { ProfileComponent } from './profile/profile';
 import { MaintActComponent } from './maintAct/maintAct';
+import { TimelineComponent } from './timeline/timeline';
 import { addVehicleModalComponent } from './addVehicleModal/addVehicleModal';
 import { addActiveModalComponent } from './addActiveModal/addActiveModal';
 import { navbarComponent } from './navbar/navbar';
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent }, 
   { path: 'profile', component: ProfileComponent}, 
-  { path: 'maintact', component: MaintActComponent }
+  { path: 'maintact', component: MaintActComponent }, 
+  { path: 'timeline', component: TimelineComponent }
 ];
 
 @NgModule({
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
     SignupComponent,
     ProfileComponent,
     MaintActComponent,
+    TimelineComponent,
     addVehicleModalComponent,
     addActiveModalComponent,
     navbarComponent, 

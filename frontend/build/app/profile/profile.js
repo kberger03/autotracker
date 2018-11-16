@@ -26,10 +26,15 @@ var ProfileComponent = (function () {
     // on load of page
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log(localStorage.getItem("userId"));
         this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).subscribe(function (data) {
             _this.vehicles = data.objects;
         });
     };
+    // localStorage.getItem("userId")
+    // ngOnInit() {
+    //   this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).then(event => this.ev = event);
+    // }
     // opens edit vehicle modal
     ProfileComponent.prototype.openEditVehicleModal = function (vehicle) {
         this.selectedVehicle = vehicle;

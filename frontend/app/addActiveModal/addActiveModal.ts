@@ -15,10 +15,27 @@ import { ActivesService } from '../services/actives.service';
 
 export class addActiveModalComponent { 
 
-    constructor(private activesService: ActivesService, private router: Router){
+    vehicles: any = [];
+    nicknames: any = [];
+    vehicle: any = '';
+
+    constructor(private activesService: ActivesService, private vehiclesService: VehiclesService, private router: Router){
     }
 
-    active = new addActiveModalForm('', '', '');
+    ngOnInit() {
+        console.log(localStorage.getItem("userId"));
+        this.vehiclesService.getUserVehicles(localStorage.getItem("userId")).subscribe(data => {
+          this.vehicles = data.objects;
+        //   this.vehicles.forEach((item :any) => {
+        //     console.log("for this");
+        //     this.nicknames.push(item.nickname);
+        //   });
+          console.log("I am here");
+          console.log(this.vehicles);
+        });
+      }
+
+    active = new addActiveModalForm(0, '', '', '');
 
     // Actions for form submission
     onSubmit(value: any){
