@@ -22,6 +22,8 @@
         <!--For loop to display all activities-->
             <tr *ngFor="let active of actives">
                 <td>
+                    {{active.nickname | uppercase}}<br>
+                    ___________________<br>
                     {{active.mtype | uppercase}}
                 </td>
                 <td>

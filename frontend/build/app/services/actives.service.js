@@ -27,6 +27,11 @@ var ActivesService = (function () {
     ActivesService.prototype.getActive = function (id) {
         return this.http.get(this.url + "/" + id).map(function (res) { return res.json(); });
     };
+    //requests the maintenance activities for a single user in the database 
+    ActivesService.prototype.getUserActives = function (vuserId) {
+        console.log(vuserId + "in useractivesservices");
+        return this.http.get("api/v1/getact/" + vuserId).map(function (res) { return res.json(); });
+    };
     //adds a active to the database
     ActivesService.prototype.addActive = function (value) {
         console.log(value + "in services");

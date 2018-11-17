@@ -65,6 +65,7 @@ class Active(db.Model):
     # Fields in this model
     id          = db.Column(db.Integer, primary_key=True)
     vehicleId   = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
+    vuserId     = db.Column(db.Integer, db.ForeignKey('users.id'))
     mtype       = db.Column(db.String, nullable=False)
     date        = db.Column(db.DateTime, nullable=False)
     mechanic    = db.Column(db.String, nullable=False)

@@ -22,6 +22,7 @@ def getUserVehicles(userId):
         for vehicle in vehicles:
                 jsonVehicle = {}
                 jsonVehicle['id'] = vehicle.id
+                jsonVehicle['userId'] =vehicle.userId
                 jsonVehicle['make'] = vehicle.make
                 jsonVehicle['model'] = vehicle.model
                 jsonVehicle['year'] = vehicle.year

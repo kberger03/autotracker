@@ -42,6 +42,9 @@ var addActiveModalComponent = (function () {
     // Actions for form submission
     addActiveModalComponent.prototype.onSubmit = function (value) {
         console.log(value); //for troubleshooting purposes
+        value.vuserId = localStorage.getItem("userId");
+        console.log("inside submit for active modal");
+        console.log(value); //for troubleshooting purposes
         this.activesService.addActive(value).subscribe(function (data) {
             console.log(data); //for troubleshooting purposes
             $('#addActiveModal').modal("hide"); //hides modal

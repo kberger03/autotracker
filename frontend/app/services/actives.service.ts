@@ -23,6 +23,12 @@ export class ActivesService {
         return this.http.get(this.url + "/" + id).map(res => res.json());
     }
 
+//requests the maintenance activities for a single user in the database 
+    getUserActives(vuserId: any){
+        console.log(vuserId + "in useractivesservices");
+        return this.http.get("api/v1/getact/" + vuserId).map(res => res.json());
+    }
+
 //adds a active to the database
     addActive(value: any){ 
         console.log(value + "in services");

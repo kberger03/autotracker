@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivesService } from '../services/actives.service';
 import { Router } from '@angular/router';
+import { VehiclesService } from '../services/vehicles.service';
 
 @Component({
   moduleId: module.id,
@@ -16,16 +17,30 @@ export class MaintActComponent {
   selectedActive: any = '';
   deletedActive: any = '';
 
-  constructor(private activesService: ActivesService, private router: Router){
+  constructor(private activesService: ActivesService, private vehiclesService: VehiclesService, private router: Router){
   }
 
 // on load of page
 ngOnInit() {
-  this.activesService.getActives().subscribe(data => {
+  console.log("I am in maintpage. userId is ");
+  console.log(localStorage.getItem("userId"));
+  this.activesService.getUserActives(localStorage.getItem("userId")).subscribe(data => {
+    console.log("wordy words");
+    console.log(data);
+    data.objects.forEach((el: any)=> {
+      console.log(el.vehicleId);
+      this.vehiclesService.getVehicle(el.vehicleId).subscribe(veh => {
+        console.log(veh);
+        console.log(veh.nickname);
+        el.nickname = veh.nickname;
+      });
+    });
+    console.log("after thought");
+    console.log(data);
     this.actives = data.objects;
   });
-}
 
+}
 
 // opens edit actives modal
 openEditActiveModal(active: any){

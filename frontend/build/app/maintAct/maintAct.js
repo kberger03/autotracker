@@ -14,9 +14,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var actives_service_1 = require("../services/actives.service");
 var router_1 = require("@angular/router");
+var vehicles_service_1 = require("../services/vehicles.service");
 var MaintActComponent = (function () {
-    function MaintActComponent(activesService, router) {
+    function MaintActComponent(activesService, vehiclesService, router) {
         this.activesService = activesService;
+        this.vehiclesService = vehiclesService;
         this.router = router;
         this.actives = [];
         this.active = '';
@@ -26,7 +28,21 @@ var MaintActComponent = (function () {
     // on load of page
     MaintActComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.activesService.getActives().subscribe(function (data) {
+        console.log("I am in maintpage. userId is ");
+        console.log(localStorage.getItem("userId"));
+        this.activesService.getUserActives(localStorage.getItem("userId")).subscribe(function (data) {
+            console.log("wordy words");
+            console.log(data);
+            data.objects.forEach(function (el) {
+                console.log(el.vehicleId);
+                _this.vehiclesService.getVehicle(el.vehicleId).subscribe(function (veh) {
+                    console.log(veh);
+                    console.log(veh.nickname);
+                    el.nickname = veh.nickname;
+                });
+            });
+            console.log("after thought");
+            console.log(data);
             _this.actives = data.objects;
         });
     };
@@ -70,6 +86,6 @@ MaintActComponent = __decorate([
         selector: 'maintAct-cmp',
         templateUrl: 'maintAct.html'
     }),
-    __metadata("design:paramtypes", [actives_service_1.ActivesService, router_1.Router])
+    __metadata("design:paramtypes", [actives_service_1.ActivesService, vehicles_service_1.VehiclesService, router_1.Router])
 ], MaintActComponent);
 exports.MaintActComponent = MaintActComponent;
