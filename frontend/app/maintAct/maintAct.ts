@@ -23,7 +23,7 @@ export class MaintActComponent {
   constructor(private activesService: ActivesService, private vehiclesService: VehiclesService, private router: Router){
   }
 
-  filterObj = new maintActForm('', '');
+  filterObj = new maintActForm('', '', '');
 
 // on load of page
 ngOnInit() {
@@ -93,7 +93,11 @@ filterModal(active: any){
 
 // actions for filter submission
 onFilterSubmit(){
-    $('#filterModal').modal("hide");
+  // console.log('inside filter submit');
+  // console.log(this.actives);
+  // this.actives = this.backUpActives;
+  // console.log(this.actives);
+  $('#filterModal').modal("hide");
 }
 
 //actions for clearing filter modal 
@@ -134,15 +138,48 @@ sortBy(col: any){
 }
 
 filterBy(value: any){
+
+  console.log('inside filter submit');
+  console.log(this.actives);
+  this.clearFilterModal();
+  console.log(this.actives);
+
   console.log('enter filter');
-  console.log(value.value.length);
+  console.log (value.mtype);
+  console.log (value.mechanic);
   console.log(this.backUpActives);
-  if(value.value.length === 0){
-    this.actives = this.backUpActives;
-  }else{
+
+  if(value.nickname.length !== 0){
     this.actives = this.actives.filter((a: any) => {
-      return a[value.type].toLowerCase().startsWith(value.value.toLowerCase());
+      return a['nickname'].toLowerCase().startsWith(value.nickname.toLowerCase());
     });
   }
+
+  if(value.mtype.length !== 0){
+          this.actives = this.actives.filter((a: any) => {
+            return a['mtype'].toLowerCase().startsWith(value.mtype.toLowerCase());
+      });
+  }
+
+  if(value.mechanic.length !== 0){
+    this.actives = this.actives.filter((a: any) => {
+      return a['mechanic'].toLowerCase().startsWith(value.mechanic.toLowerCase());
+    });
+  }
+
 }
+
+// filterBy(value: any){
+//   console.log(value);
+//   //console.log(value.val.length);
+//   console.log(this.backUpActives);
+//   if(value.val.length === 0){
+//       this.actives = this.backUpActives;
+//   }else{
+//       this.actives = this.actives.filter((a: any) => {
+//           return a[value.typ].toLowerCase().startsWith(value.val.toLowerCase());
+//       });
+//   }
+// }
+
 }

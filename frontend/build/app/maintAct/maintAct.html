@@ -97,17 +97,44 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" name="filterForm" #filterForm="ngForm" (ngSubmit)="onFilterSubmit()" novalidate>
-                    <select type="text" class="form-control" name="type" [(ngModel)]="filterObj.typ" id="type" placeholder="opponent" required>
+                    
+                <!-- Nickname -->
+                <div class="form-group">
+                    <label for="nickname" class="col-form-label">Nickname</label>
+                    <div>
+                        <input type="text" class="form-control" [(ngModel)]="filterObj.nickname" name="nickname" id="nickname" placeholder="nickname filter">
+                    </div>
+                </div>
+
+                <!-- MType -->
+                <div class="form-group">
+                    <label for="mtype" class="col-form-label">Maintenance Type</label>
+                    <div>
+                        <input type="text" class="form-control" [(ngModel)]="filterObj.mtype" name="mtype" id="mtype" placeholder="maintenance type filter">
+                    </div>
+                </div>
+
+                <!-- Mechanic -->
+                <div class="form-group">
+                    <label for="mechanic" class="col-form-label">Mechanic</label>
+                    <div>
+                        <input type="text" class="form-control" [(ngModel)]="filterObj.mechanic" name="mechanic" id="mechanic" placeholder="mechanic filter">
+                    </div>
+                </div>
+                    
+                    <!-- <select type="text" class="form-control" name="typ" [(ngModel)]="filterObj.typ" id="typ" required>
                         <option value="nickname">Nickname</option>
                         <option value="mtype">Maintenance Activity</option>
                         <option value="data">Date</option>
                         <option value="mechanic">Mechanic</option>
                     </select>
-                    <input type="text" class="form-control" [(ngModel)]="filterObj.val" (change)="filterBy(filterForm.value)" name="value" id="value" placeholder="filter" required>
+                    <input type="text" class="form-control" [(ngModel)]="filterObj.val" (change)="filterBy(filterForm.value)" name="val" id="val" placeholder="filter" required>
+                 -->
+
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Filter</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="filterBy(filterForm.value)">Filter</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
           </div>

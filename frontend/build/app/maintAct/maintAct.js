@@ -27,7 +27,7 @@ var MaintActComponent = (function () {
         this.selectedActive = '';
         this.deletedActive = '';
         this.sortFlag = 0;
-        this.filterObj = new maintAct_form_1.maintActForm('', '');
+        this.filterObj = new maintAct_form_1.maintActForm('', '', '');
     }
     // on load of page
     MaintActComponent.prototype.ngOnInit = function () {
@@ -90,6 +90,10 @@ var MaintActComponent = (function () {
     };
     // actions for filter submission
     MaintActComponent.prototype.onFilterSubmit = function () {
+        // console.log('inside filter submit');
+        // console.log(this.actives);
+        // this.actives = this.backUpActives;
+        // console.log(this.actives);
         $('#filterModal').modal("hide");
     };
     //actions for clearing filter modal 
@@ -130,15 +134,27 @@ var MaintActComponent = (function () {
         }
     };
     MaintActComponent.prototype.filterBy = function (value) {
+        console.log('inside filter submit');
+        console.log(this.actives);
+        this.clearFilterModal();
+        console.log(this.actives);
         console.log('enter filter');
-        console.log(value.value.length);
+        console.log(value.mtype);
+        console.log(value.mechanic);
         console.log(this.backUpActives);
-        if (value.value.length === 0) {
-            this.actives = this.backUpActives;
-        }
-        else {
+        if (value.nickname.length !== 0) {
             this.actives = this.actives.filter(function (a) {
-                return a[value.type].toLowerCase().startsWith(value.value.toLowerCase());
+                return a['nickname'].toLowerCase().startsWith(value.nickname.toLowerCase());
+            });
+        }
+        if (value.mtype.length !== 0) {
+            this.actives = this.actives.filter(function (a) {
+                return a['mtype'].toLowerCase().startsWith(value.mtype.toLowerCase());
+            });
+        }
+        if (value.mechanic.length !== 0) {
+            this.actives = this.actives.filter(function (a) {
+                return a['mechanic'].toLowerCase().startsWith(value.mechanic.toLowerCase());
             });
         }
     };
