@@ -17,13 +17,37 @@
     </button>
     <br><br>
     <!--table begin-->
-    <table class="table table-bordered table-hover table-responsive">
+    <table id="dtOrderExample" class="table table-striped table-bordered table-hover table-responsive" cellspacing="0" width="100%"> 
+        <tr>
+            <td (click)="sortBy('nickname')">
+                Nickname
+            </td>
+            <td (click)="sortBy('mtype')">
+                Maintenance Activity
+            </td>
+            <td (click)="sortBy('date')">
+                Date
+            </td>
+            <td (click)="sortBy('mechanic')">
+                Mechanic
+            </td>
+            <td>
+                <!--filter button-->
+                <button (click)="filterModal(active)" type="button" class="btn btn-secondary">
+                    Filter
+                </button>
+            </td>
+            <td>
+                <button (click)="clearFilterModal()" type="button" class="btn btn-secondary">Clear Filters</button>
+            </td>
+        </tr>
         <tbody>
         <!--For loop to display all activities-->
             <tr *ngFor="let active of actives">
                 <td>
-                    {{active.nickname | uppercase}}<br>
-                    ___________________<br>
+                    {{active.nickname | uppercase}}
+                </td>
+                <td>
                     {{active.mtype | uppercase}}
                 </td>
                 <td>
@@ -58,6 +82,37 @@
 
 <!--import-->
 <addActiveModal-cmp></addActiveModal-cmp>
+
+
+
+<!--Filter Modal-->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Filter Maintenance Activities</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" name="filterForm" #filterForm="ngForm" (ngSubmit)="onFilterSubmit()" novalidate>
+                    <select type="text" class="form-control" name="type" [(ngModel)]="filterObj.typ" id="type" placeholder="opponent" required>
+                        <option value="nickname">Nickname</option>
+                        <option value="mtype">Maintenance Activity</option>
+                        <option value="data">Date</option>
+                        <option value="mechanic">Mechanic</option>
+                    </select>
+                    <input type="text" class="form-control" [(ngModel)]="filterObj.val" (change)="filterBy(filterForm.value)" name="value" id="value" placeholder="filter" required>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Filter</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

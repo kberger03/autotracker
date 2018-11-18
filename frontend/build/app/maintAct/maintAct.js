@@ -15,6 +15,7 @@ var core_1 = require("@angular/core");
 var actives_service_1 = require("../services/actives.service");
 var router_1 = require("@angular/router");
 var vehicles_service_1 = require("../services/vehicles.service");
+var maintAct_form_1 = require("./maintAct.form");
 var MaintActComponent = (function () {
     function MaintActComponent(activesService, vehiclesService, router) {
         this.activesService = activesService;
@@ -22,8 +23,11 @@ var MaintActComponent = (function () {
         this.router = router;
         this.actives = [];
         this.active = '';
+        this.backUpActives = [];
         this.selectedActive = '';
         this.deletedActive = '';
+        this.sortFlag = 0;
+        this.filterObj = new maintAct_form_1.maintActForm('', '');
     }
     // on load of page
     MaintActComponent.prototype.ngOnInit = function () {
@@ -44,6 +48,8 @@ var MaintActComponent = (function () {
             console.log("after thought");
             console.log(data);
             _this.actives = data.objects;
+            _this.backUpActives = _this.actives;
+            console.log(_this.backUpActives);
         });
     };
     // opens edit actives modal
@@ -77,6 +83,64 @@ var MaintActComponent = (function () {
             window.location.reload();
             // this.router.navigateByUrl('menu');
         });
+    };
+    // opens filter modal
+    MaintActComponent.prototype.filterModal = function (active) {
+        $('#filterModal').modal("show");
+    };
+    // actions for filter submission
+    MaintActComponent.prototype.onFilterSubmit = function () {
+        $('#filterModal').modal("hide");
+    };
+    //actions for clearing filter modal 
+    MaintActComponent.prototype.clearFilterModal = function () {
+        // this.router.navigateByUrl('/menu'); //may need later
+        // $('#filterModal').modal("hide");
+        this.actives = this.backUpActives;
+        // window.location.reload();
+    };
+    MaintActComponent.prototype.sortBy = function (col) {
+        if (this.sortFlag === 0) {
+            console.log(this.actives);
+            this.actives = this.actives.sort(function (a, b) {
+                if (a[col] > b[col]) {
+                    return 1;
+                }
+                else if (a[col] < b[col]) {
+                    return -1;
+                }
+                return 0;
+            });
+            console.log(this.actives);
+            this.sortFlag = 1;
+        }
+        else {
+            console.log(this.actives);
+            this.actives = this.actives.sort(function (a, b) {
+                if (a[col] < b[col]) {
+                    return 1;
+                }
+                else if (a[col] > b[col]) {
+                    return -1;
+                }
+                return 0;
+            });
+            console.log(this.actives);
+            this.sortFlag = 0;
+        }
+    };
+    MaintActComponent.prototype.filterBy = function (value) {
+        console.log('enter filter');
+        console.log(value.value.length);
+        console.log(this.backUpActives);
+        if (value.value.length === 0) {
+            this.actives = this.backUpActives;
+        }
+        else {
+            this.actives = this.actives.filter(function (a) {
+                return a[value.type].toLowerCase().startsWith(value.value.toLowerCase());
+            });
+        }
     };
     return MaintActComponent;
 }());

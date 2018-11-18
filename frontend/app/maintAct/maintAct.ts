@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivesService } from '../services/actives.service';
 import { Router } from '@angular/router';
 import { VehiclesService } from '../services/vehicles.service';
+import {maintActForm} from "./maintAct.form";
 
 @Component({
   moduleId: module.id,
@@ -14,11 +15,15 @@ export class MaintActComponent {
 
   actives: any = [];
   active: any = '';
+  backUpActives: any = [];
   selectedActive: any = '';
   deletedActive: any = '';
+  sortFlag: any = 0;
 
   constructor(private activesService: ActivesService, private vehiclesService: VehiclesService, private router: Router){
   }
+
+  filterObj = new maintActForm('', '');
 
 // on load of page
 ngOnInit() {
@@ -38,6 +43,8 @@ ngOnInit() {
     console.log("after thought");
     console.log(data);
     this.actives = data.objects;
+    this.backUpActives = this.actives;
+    console.log(this.backUpActives);
   });
 
 }
@@ -49,13 +56,13 @@ openEditActiveModal(active: any){
 }
 
 // opens delete active modal
-  openDeleteActiveModal(active: any){
+openDeleteActiveModal(active: any){
     this.deletedActive = active;
     $('#deleteActiveModal').modal("show"); 
 }
 
 // actions for edit active submission
- onEditSubmit(value: any){
+onEditSubmit(value: any){
   this.activesService.updateActive(value).subscribe(data => {
     $('#editActiveModal').modal("hide");
     // this.router.navigateByUrl('menu'); //may need later
@@ -70,7 +77,7 @@ closeEditActiveModal(){
 }
 
 //actions for delete active modal 
- deleteActive(value: any){
+deleteActive(value: any){
   this.activesService.deleteActive(value).subscribe(data => {
     console.log(data);
     $('#deleteActiveModal').modal("hide");   
@@ -79,4 +86,63 @@ closeEditActiveModal(){
   });
  }
 
+// opens filter modal
+filterModal(active: any){
+  $('#filterModal').modal("show"); 
+}
+
+// actions for filter submission
+onFilterSubmit(){
+    $('#filterModal').modal("hide");
+}
+
+//actions for clearing filter modal 
+clearFilterModal(){
+  // this.router.navigateByUrl('/menu'); //may need later
+  // $('#filterModal').modal("hide");
+  this.actives = this.backUpActives;
+  // window.location.reload();
+}
+
+sortBy(col: any){
+  if(this.sortFlag === 0){
+    console.log(this.actives);
+    this.actives = this.actives.sort((a: any, b: any) => {
+      if(a[col] > b[col]){
+        return 1;
+      }else if(a[col] < b[col]){
+        return -1;
+      }
+      return 0
+    });
+    console.log(this.actives);
+    this.sortFlag = 1;
+  } else {
+    console.log(this.actives);
+    this.actives = this.actives.sort((a: any, b: any) => {
+      if(a[col] < b[col]){
+        return 1;
+      }else if(a[col] > b[col]){
+        return -1;
+      }
+      return 0
+    });
+    console.log(this.actives);
+    this.sortFlag = 0;
+  }
+
+}
+
+filterBy(value: any){
+  console.log('enter filter');
+  console.log(value.value.length);
+  console.log(this.backUpActives);
+  if(value.value.length === 0){
+    this.actives = this.backUpActives;
+  }else{
+    this.actives = this.actives.filter((a: any) => {
+      return a[value.type].toLowerCase().startsWith(value.value.toLowerCase());
+    });
+  }
+}
 }

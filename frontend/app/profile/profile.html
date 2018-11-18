@@ -18,6 +18,14 @@
     <br><br>
     <!--table begin-->
     <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
         <tbody>
         <!--For loop to display all vehicles-->
             <tr *ngFor="let vehicle of vehicles">
@@ -28,7 +36,7 @@
                 </td>
                 <td>
                     <br><br>
-                    Primary Driver: {{vehicle.pdriver | uppercase}}
+                    {{vehicle.pdriver | uppercase}}
                 </td>
                 <td class="text-center">
                     <br>
