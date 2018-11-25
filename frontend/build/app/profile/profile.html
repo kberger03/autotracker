@@ -3,7 +3,7 @@
 <navbar2-cmp></navbar2-cmp>
 
 <div class="container">
-    <h1 align="center">Profile</h1>
+    <h1 align="center">Vehicle Profile Page</h1>
 </div>
 <div class="main">
 <div class="container">
@@ -17,11 +17,11 @@
     </button>
     <br><br>
     <!--table begin-->
-    <table class="table table-bordered table-hover table-responsive">
+    <table class="table table-bordered table-hover table-responsive" align="center">
         <thead>
             <tr>
                 <th>Vehicle</th>
-                <th>Driver</th>
+                <th>Primary Driver</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -34,19 +34,16 @@
                     ___________________<br>
                     {{vehicle.year}} {{vehicle.make | uppercase}} {{vehicle.model | uppercase}}<br>
                 </td>
-                <td>
-                    <br><br>
+                <td style="vertical-align: middle;">
                     {{vehicle.pdriver | uppercase}}
                 </td>
-                <td class="text-center">
-                    <br>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
                     <!--edit vehicle button-->
                     <button (click)="openEditVehicleModal(vehicle)" type="button" class="btn btn-warning">
                         Edit Vehicle
                     </button>
                 </td>
-                <td class="text-center">
-                    <br>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
                     <!--delete vehicle button-->
                     <button (click)="openDeleteVehicleModal(vehicle)" type="button" class="btn btn-danger">
                         Delete Vehicle

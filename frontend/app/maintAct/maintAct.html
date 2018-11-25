@@ -3,7 +3,7 @@
 <navbar2-cmp></navbar2-cmp>
 
 <div class="container">
-    <h1 align="center">Maintenance Activities</h1>
+    <h1 align="center">Maintenance Activities & History</h1>
 </div>
 <div class="main">
 <div class="container">
@@ -31,19 +31,19 @@
             <td (click)="sortBy('mechanic')">
                 Mechanic
             </td>
-            <td>
+            <td style="text-align: center; vertical-align: middle;">
                 <!--filter button-->
-                <button (click)="filterModal(active)" type="button" class="btn btn-secondary">
+                <button (click)="filterModal(active)" type="button" class="btn btn-info">
                     Filter
                 </button>
             </td>
-            <td>
-                <button (click)="clearFilterModal()" type="button" class="btn btn-secondary">Clear Filters</button>
+            <td style="text-align: center; vertical-align: middle;">
+                <button (click)="clearFilterModal()" type="button" class="btn btn-info">Clear Filters</button>
             </td>
         </tr>
         <tbody>
         <!--For loop to display all activities-->
-            <tr *ngFor="let active of actives">
+            <tr *ngFor="let active of actives" style="vertical-align: middle;">
                 <td>
                     {{active.nickname | uppercase}}
                 </td>
@@ -56,15 +56,13 @@
                 <td>
                     {{active.mechanic | uppercase}}
                 </td>
-                <td class="text-center">
-                    <br>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
                     <!--edit activity button-->
                     <button (click)="openEditActiveModal(active)" type="button" class="btn btn-warning">
                         Edit Activity
                     </button>
                 </td>
-                <td class="text-center">
-                    <br>
+                <td class="text-center" style="text-align: center; vertical-align: middle;">
                     <!--delete activity button-->
                     <button (click)="openDeleteActiveModal(active)" type="button" class="btn btn-danger">
                         Delete Activity
