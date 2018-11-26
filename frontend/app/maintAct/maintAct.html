@@ -16,6 +16,8 @@
       Add Maintenance Activity
     </button>
     <br><br>
+    <button type="button" (click)="pagePDF()" class="btn btn-info">Export to PDF</button>
+    <br><br>
     <!--table begin-->
     <table id="dtOrderExample" class="table table-striped table-bordered table-hover table-responsive" cellspacing="0" width="100%"> 
         <tr>
@@ -33,9 +35,7 @@
             </td>
             <td style="text-align: center; vertical-align: middle;">
                 <!--filter button-->
-                <button (click)="filterModal(active)" type="button" class="btn btn-info">
-                    Filter
-                </button>
+                <button (click)="filterModal(active)" type="button" class="btn btn-info">Filter</button>
             </td>
             <td style="text-align: center; vertical-align: middle;">
                 <button (click)="clearFilterModal()" type="button" class="btn btn-info">Clear Filters</button>

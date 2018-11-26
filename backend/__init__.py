@@ -56,5 +56,8 @@ from backend.api.v1 import vehicles
 # Importing the REST API for actives
 from backend.api.v1 import actives
 
+# Importing the REST API for PDF
+from backend.api.v1 import pdf
+
 # Importing the app views
 from backend import views

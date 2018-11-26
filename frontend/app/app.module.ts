@@ -22,6 +22,7 @@ import { UsersService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { VehiclesService } from './services/vehicles.service';
 import { ActivesService } from './services/actives.service';
+import { PDFService } from './services/pdf.service';
 
 // Routes to jump to 
 const appRoutes: Routes = [
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
     UsersService,
     AuthService, 
     VehiclesService, 
-    ActivesService
+    ActivesService, 
+    PDFService
   ],
   bootstrap: [ AppComponent ]
 })

@@ -16,10 +16,12 @@ var actives_service_1 = require("../services/actives.service");
 var router_1 = require("@angular/router");
 var vehicles_service_1 = require("../services/vehicles.service");
 var maintAct_form_1 = require("./maintAct.form");
+var pdf_service_1 = require("../services/pdf.service");
 var MaintActComponent = (function () {
-    function MaintActComponent(activesService, vehiclesService, router) {
+    function MaintActComponent(activesService, vehiclesService, pdfService, router) {
         this.activesService = activesService;
         this.vehiclesService = vehiclesService;
+        this.pdfService = pdfService;
         this.router = router;
         this.actives = [];
         this.active = '';
@@ -51,6 +53,11 @@ var MaintActComponent = (function () {
             _this.backUpActives = _this.actives;
             console.log(_this.backUpActives);
         });
+    };
+    //page to PDF 
+    MaintActComponent.prototype.pagePDF = function () {
+        console.log("I am pdf");
+        this.pdfService.getPDF(this.actives);
     };
     // opens edit actives modal
     MaintActComponent.prototype.openEditActiveModal = function (active) {
@@ -166,6 +173,6 @@ MaintActComponent = __decorate([
         selector: 'maintAct-cmp',
         templateUrl: 'maintAct.html'
     }),
-    __metadata("design:paramtypes", [actives_service_1.ActivesService, vehicles_service_1.VehiclesService, router_1.Router])
+    __metadata("design:paramtypes", [actives_service_1.ActivesService, vehicles_service_1.VehiclesService, pdf_service_1.PDFService, router_1.Router])
 ], MaintActComponent);
 exports.MaintActComponent = MaintActComponent;

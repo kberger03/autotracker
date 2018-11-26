@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivesService } from '../services/actives.service';
 import { Router } from '@angular/router';
 import { VehiclesService } from '../services/vehicles.service';
-import {maintActForm} from "./maintAct.form";
+import { maintActForm } from "./maintAct.form";
+import { PDFService } from '../services/pdf.service';
 
 @Component({
   moduleId: module.id,
@@ -20,7 +21,7 @@ export class MaintActComponent {
   deletedActive: any = '';
   sortFlag: any = 0;
 
-  constructor(private activesService: ActivesService, private vehiclesService: VehiclesService, private router: Router){
+  constructor(private activesService: ActivesService, private vehiclesService: VehiclesService,  private pdfService: PDFService, private router: Router){
   }
 
   filterObj = new maintActForm('', '', '');
@@ -47,6 +48,12 @@ ngOnInit() {
     console.log(this.backUpActives);
   });
 
+}
+
+//page to PDF 
+pagePDF(){
+  console.log("I am pdf");
+  this.pdfService.getPDF(this.actives);
 }
 
 // opens edit actives modal

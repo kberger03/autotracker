@@ -28,6 +28,7 @@ var users_service_1 = require("./services/users.service");
 var auth_service_1 = require("./services/auth.service");
 var vehicles_service_1 = require("./services/vehicles.service");
 var actives_service_1 = require("./services/actives.service");
+var pdf_service_1 = require("./services/pdf.service");
 // Routes to jump to 
 var appRoutes = [
     { path: '', component: home_1.HomeComponent },
@@ -69,7 +70,8 @@ AppModule = __decorate([
             users_service_1.UsersService,
             auth_service_1.AuthService,
             vehicles_service_1.VehiclesService,
-            actives_service_1.ActivesService
+            actives_service_1.ActivesService,
+            pdf_service_1.PDFService
         ],
         bootstrap: [app_component_1.AppComponent]
     })
