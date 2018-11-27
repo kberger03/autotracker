@@ -57,7 +57,10 @@ var MaintActComponent = (function () {
     //page to PDF 
     MaintActComponent.prototype.pagePDF = function () {
         console.log("I am pdf");
-        this.pdfService.getPDF(this.actives);
+        this.pdfService.getPDF(this.actives).subscribe(function (data) {
+            console.log(data);
+            console.log("I'm in the pagePDF");
+        });
     };
     // opens edit actives modal
     MaintActComponent.prototype.openEditActiveModal = function (active) {

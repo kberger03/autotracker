@@ -20,6 +20,7 @@ export class PDFService {
         let valueString = JSON.stringify(value);
         console.log(valueString);
         console.log("roar");
+        console.log(this.url);
         let header = new Headers({ 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: header });
         return this.http.post(this.url, valueString, options).map(res => res.json()); 

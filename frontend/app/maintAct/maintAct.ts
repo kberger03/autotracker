@@ -53,7 +53,10 @@ ngOnInit() {
 //page to PDF 
 pagePDF(){
   console.log("I am pdf");
-  this.pdfService.getPDF(this.actives);
+  this.pdfService.getPDF(this.actives).subscribe(data => { 
+    console.log(data); 
+    console.log("I'm in the pagePDF");
+  });
 }
 
 // opens edit actives modal

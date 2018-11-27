@@ -26,6 +26,7 @@ var PDFService = (function () {
         var valueString = JSON.stringify(value);
         console.log(valueString);
         console.log("roar");
+        console.log(this.url);
         var header = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: header });
         return this.http.post(this.url, valueString, options).map(function (res) { return res.json(); });
