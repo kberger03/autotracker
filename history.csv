@@ -1,6 +1,3 @@
-mtype,date,vehicleId,vuserId,nickname,id,mechanic
-oil change,"Thu, 15 Nov 2018 00:00:00 GMT",1,1,anick,5,Kayla
-aolichange,"Mon, 01 Jan 1010 00:00:00 GMT",1,1,anick,1,amech
-tire rotation,"Tue, 05 Jun 2345 00:00:00 GMT",3,1,karen,6,jordan
-oil,"Mon, 14 Aug 9876 00:00:00 GMT",1,1,anick,7,jamie
-Oil Change,"Thu, 08 Nov 2018 00:00:00 GMT",3,1,karen,11,Kayla
+mechanic,vuserId,nickname,date,mtype,id,vehicleId
+jordan,1,karen,"Tue, 05 Jun 2345 00:00:00 GMT",tire rotation,6,3
+Kayla,1,karen,"Thu, 08 Nov 2018 00:00:00 GMT",Oil Change,11,3

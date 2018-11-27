@@ -43,7 +43,7 @@ export class LoginComponent {
           console.log(id);
           this.router.navigateByUrl('profile'); //redirect to the profile page in success cases
         });
-      } 
+      }
     });
   }
 

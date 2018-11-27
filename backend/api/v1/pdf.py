@@ -24,6 +24,6 @@ def getPDF():
     history.close()
     return make_response(jsonify('Success'), 200)
 
-@app.route(URL + '/downloads', methods=['GET'])
+@app.route(URL + '/download', methods=['GET'])
 def download():
-    return send_file('/vagrant/history1.csv', attachment_filename='history.csv', cache_timeout=-1)
+    return send_file('/vagrant/history.csv', attachment_filename='history.csv', cache_timeout=-1)
