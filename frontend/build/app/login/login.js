@@ -25,6 +25,7 @@ var LoginComponent = (function () {
         this.router = router;
         this.vehicles = [];
         this.vehicle = '';
+        this.authFlag = 1;
         this.user = new login_form_1.LoginForm('', '');
         this.usersService.getUsers().subscribe(function (users) {
             console.log(users);
@@ -35,6 +36,7 @@ var LoginComponent = (function () {
         var _this = this;
         this.authService.authenticate(value).subscribe(function (data) {
             if (data = 'Success') {
+                // $('#loginErrorModal').modal("hide"); 
                 console.log(value.login);
                 _this.usersService.getId(value.login).subscribe(function (id) {
                     localStorage.setItem('userId', id.id);
@@ -42,10 +44,14 @@ var LoginComponent = (function () {
                     localStorage.setItem('userEmail', id.email);
                     localStorage.setItem('userUsername', id.username);
                     console.log(id);
+                    _this.authFlag = 0;
                     _this.router.navigateByUrl('profile'); //redirect to the profile page in success cases
                 });
             }
         });
+        if (this.authFlag == 1) {
+            $('#needsHelp').show();
+        }
     };
     return LoginComponent;
 }());

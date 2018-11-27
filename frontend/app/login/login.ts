@@ -17,6 +17,7 @@ export class LoginComponent {
 
   vehicles: any = [];
   vehicle: any = '';
+  authFlag: any = 1;
 
   constructor(
     private usersService: UsersService, 
@@ -41,10 +42,14 @@ export class LoginComponent {
           localStorage.setItem('userEmail', id.email);
           localStorage.setItem('userUsername', id.username);
           console.log(id);
+          this.authFlag = 0;
           this.router.navigateByUrl('profile'); //redirect to the profile page in success cases
         });
       }
     });
+    if(this.authFlag == 1) {
+      $('#needsHelp').show();
+    }
   }
 
 }

@@ -11,6 +11,7 @@
     <!--Form Begin-->
         <form class="form-horizontal" name="loginForm" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate>
             <legend>Login</legend>
+            <div id="needsHelp" style="display: none">Please enter a valid username and password</div>
             <!--Username Field-->
             <div class="form-group">
                 <label for="login" class="col-lg-2 control-label"><i class="glyphicon glyphicon-user"></i></label>
