@@ -3,9 +3,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivesService } from '../services/actives.service';
 import { Router } from '@angular/router';
+import { Http, Response, Headers, RequestOptions, ResponseContentType } from '@angular/http'
 import { VehiclesService } from '../services/vehicles.service';
 import { maintActForm } from "./maintAct.form";
 import { PDFService } from '../services/pdf.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   moduleId: module.id,
@@ -21,7 +23,7 @@ export class MaintActComponent {
   deletedActive: any = '';
   sortFlag: any = 0;
 
-  constructor(private activesService: ActivesService, private vehiclesService: VehiclesService,  private pdfService: PDFService, private router: Router){
+  constructor(private activesService: ActivesService, private vehiclesService: VehiclesService,  private pdfService: PDFService, private router: Router, private http: Http){
   }
 
   filterObj = new maintActForm('', '', '');
@@ -54,10 +56,29 @@ ngOnInit() {
 pagePDF(){
   console.log("I am pdf");
   this.pdfService.getPDF(this.actives).subscribe(data => { 
-    console.log(data); 
-    console.log("I'm in the pagePDF");
+    this.getFile("http://localhost:3000/api/v1/download")
+    .subscribe(fileData => 
+      {
+      let b:any = new Blob([fileData], { type: 'text/csv' });
+      var url= window.URL.createObjectURL(b);
+      let a = document.createElement("a");
+      a.style = "display: none";
+      document.body.appendChild(a);
+      a.href = url;
+      a.download = 'history.csv'; // gives it a name via an a tag
+      a.click();
+      window.URL.revokeObjectURL(url);
+        //window.open(url);
+      }
+    );
   });
 }
+
+getFile(path: string):Observable<any>{
+      let options = new RequestOptions({responseType: ResponseContentType.Blob});
+      return this.http.get(path, options)
+          .map((response: Response) => <Blob>response.blob())  ;
+    }
 
 // opens edit actives modal
 openEditActiveModal(active: any){

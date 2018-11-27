@@ -14,15 +14,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var actives_service_1 = require("../services/actives.service");
 var router_1 = require("@angular/router");
+var http_1 = require("@angular/http");
 var vehicles_service_1 = require("../services/vehicles.service");
 var maintAct_form_1 = require("./maintAct.form");
 var pdf_service_1 = require("../services/pdf.service");
 var MaintActComponent = (function () {
-    function MaintActComponent(activesService, vehiclesService, pdfService, router) {
+    function MaintActComponent(activesService, vehiclesService, pdfService, router, http) {
         this.activesService = activesService;
         this.vehiclesService = vehiclesService;
         this.pdfService = pdfService;
         this.router = router;
+        this.http = http;
         this.actives = [];
         this.active = '';
         this.backUpActives = [];
@@ -56,11 +58,28 @@ var MaintActComponent = (function () {
     };
     //page to PDF 
     MaintActComponent.prototype.pagePDF = function () {
+        var _this = this;
         console.log("I am pdf");
         this.pdfService.getPDF(this.actives).subscribe(function (data) {
-            console.log(data);
-            console.log("I'm in the pagePDF");
+            _this.getFile("http://localhost:3000/api/v1/download")
+                .subscribe(function (fileData) {
+                var b = new Blob([fileData], { type: 'text/csv' });
+                var url = window.URL.createObjectURL(b);
+                var a = document.createElement("a");
+                a.style = "display: none";
+                document.body.appendChild(a);
+                a.href = url;
+                a.download = 'history.csv'; // gives it a name via an a tag
+                a.click();
+                window.URL.revokeObjectURL(url);
+                //window.open(url);
+            });
         });
+    };
+    MaintActComponent.prototype.getFile = function (path) {
+        var options = new http_1.RequestOptions({ responseType: http_1.ResponseContentType.Blob });
+        return this.http.get(path, options)
+            .map(function (response) { return response.blob(); });
     };
     // opens edit actives modal
     MaintActComponent.prototype.openEditActiveModal = function (active) {
@@ -176,6 +195,6 @@ MaintActComponent = __decorate([
         selector: 'maintAct-cmp',
         templateUrl: 'maintAct.html'
     }),
-    __metadata("design:paramtypes", [actives_service_1.ActivesService, vehicles_service_1.VehiclesService, pdf_service_1.PDFService, router_1.Router])
+    __metadata("design:paramtypes", [actives_service_1.ActivesService, vehicles_service_1.VehiclesService, pdf_service_1.PDFService, router_1.Router, http_1.Http])
 ], MaintActComponent);
 exports.MaintActComponent = MaintActComponent;
