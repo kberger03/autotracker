@@ -36,7 +36,6 @@ var LoginComponent = (function () {
         var _this = this;
         this.authService.authenticate(value).subscribe(function (data) {
             if (data = 'Success') {
-                // $('#loginErrorModal').modal("hide"); 
                 console.log(value.login);
                 _this.usersService.getId(value.login).subscribe(function (id) {
                     localStorage.setItem('userId', id.id);

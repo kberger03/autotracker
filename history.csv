@@ -1,3 +1,4 @@
-mechanic,vuserId,nickname,date,mtype,id,vehicleId
-jordan,1,karen,"Tue, 05 Jun 2345 00:00:00 GMT",tire rotation,6,3
-Kayla,1,karen,"Thu, 08 Nov 2018 00:00:00 GMT",Oil Change,11,3
+mechanic,id,nickname,date,vuserId,mtype,vehicleId
+Thomas,14,Frosty,"Wed, 01 Aug 2018 00:00:00 GMT",4,Window Replacement,7
+Thomas,12,Dark Knight,"Fri, 08 Jun 2018 00:00:00 GMT",4,Oil Change,8
+Lily,13,Dark Knight,"Wed, 18 Jul 2018 00:00:00 GMT",4,Tire Rotation,8

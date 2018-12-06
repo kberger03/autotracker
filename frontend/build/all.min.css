@@ -1,16 +1,16 @@
 
+home-cmp h1{text-align:center}home-cmp h2{text-align:center}home-cmp img{display:block;margin:auto}home-cmp .jumbotron{background:url("../assets/img/toproad2.jpg") no-repeat;background-size:100% 100%}
+
 
 login-cmp .jumbotron{background:url("../assets/img/toproad2.jpg") no-repeat;background-size:100% 100%}
 
-home-cmp h1{text-align:center}home-cmp h2{text-align:center}home-cmp img{display:block;margin:auto}home-cmp .jumbotron{background:url("../assets/img/toproad2.jpg") no-repeat;background-size:100% 100%}
+maintAct-cmp h3{text-align:center}maintAct-cmp .jumbotron{background:url("../assets/img/toproad2.jpg") no-repeat;background-size:100% 100%}maintAct-cmp .main{background:url("../assets/img/toproad2.jpg");background-size:100% 100%}
 
 navbar-cmp .padding-left{padding-left:5px}
 
 navbar3-cmp .padding-left{padding-left:5px}
 
-navbar2-cmp .padding-left{padding-left:5px}navbar2-cmp .padding-right{padding-right:10px}
-
-maintAct-cmp h3{text-align:center}maintAct-cmp .jumbotron{background:url("../assets/img/toproad2.jpg") no-repeat;background-size:100% 100%}maintAct-cmp .main{background:url("../assets/img/toproad2.jpg");background-size:100% 100%}
-
 profile-cmp h3{text-align:center}profile-cmp .jumbotron{background:url("../assets/img/toproad2.jpg") no-repeat;background-size:100% 100%}profile-cmp .main{background:url("../assets/img/toproad2.jpg");background-size:100% 100%}
+
+navbar2-cmp .padding-left{padding-left:5px}navbar2-cmp .padding-right{padding-right:10px}
 
